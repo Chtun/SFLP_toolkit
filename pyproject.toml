@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "SFLP_toolkit"
+version = "0.1.0"
+description = "A system for encoding using the Spherical Fibonacci Lattice Pixelation method and evaluating against SOTA."
+readme = "README.md"
+requires-python = ">=3.8,<3.13"
+license = "MIT"
+authors = [
+    { name = "Chitsein Htun", email = "chtun@live.com" }
+]
+dependencies = [
+    "numpy>=1.20,<2.0.0",
+    "pandas>=1.3",
+    "opencv-python>=4.8",
+    "matplotlib>=3.4",
+    "pyvista>=0.44.2",
+    "vtk>=9.4",
+    "pydantic>=2.0"
+    # Removed cupy from core dependencies
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=22.0",
+    "isort>=5.0",
+    "mypy>=0.9",
+    "sphinx>=4.0",
+    "huggingface_hub",
+]
+cuda = [
+    "cupy-cuda12x==13.5.1; sys_platform == 'linux'",
+    "cupy-cuda12x==13.5.1; sys_platform == 'darwin'",
+    "cupy-cuda12x==13.5.1; sys_platform == 'win32'"
+]
+# Users on Windows or other unsupported platforms will need to manually choose or use CPU version:
+# "cupy-cpu==13.5.1"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/python/SFLP_toolkit/"]
+
+[tool.hatch.build]
+include = [
+    "src/python/SFLP_toolkit/**/*.py",
+    "src/python/SFLP_toolkit/**/*.pyi",
+]

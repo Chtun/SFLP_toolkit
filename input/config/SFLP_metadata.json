@@ -1,0 +1,9 @@
+{
+    "EncodingProjection": "SFLP",
+    "num_pixels": 18000001,
+    "ArrangementType": "STANDARD",
+    "OptimalIndexHops" : ["2584", "4181"],
+    "primary_reference_SFLP_index": 0,
+    "secondary_reference_SFLP_index": -1,
+    "padding_size": 2
+}

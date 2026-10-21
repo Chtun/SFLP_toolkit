@@ -1,0 +1,49 @@
+# Core dependencies
+numpy>=1.20,<2.0.0
+pandas>=2.2.2
+matplotlib>=3.4.0,<4.0.0
+cupy-cuda12x==13.5.1
+
+# Image and Video conversion / Visualization
+seaborn>=0.11.0,<0.13.0  # For enhanced plotting
+ffmpeg-python>=0.2.0  # For video generation
+pyvista>=0.44.2
+Pillow>=9.0.0,<11.0.0
+opencv-python>=4.7.0,<4.10.0
+
+# Data processing
+scipy>=1.7.0,<2.0.0  # For scientific computations
+scikit-learn>=1.0.0,<2.0.0  # For data processing utilities
+
+# Error Handling
+pydantic
+
+# Data download
+pytube
+huggingface_hub
+
+# Testing
+pytest>=6.0.0,<7.0.0
+pytest-cov>=2.12.0,<3.0.0  # For coverage reporting
+pytest-mock>=3.6.0,<4.0.0  # For mocking in tests
+
+# Type checking
+mypy>=0.910,<1.0.0
+types-setuptools>=57.0.0,<58.0.0
+pandas-stubs>=1.2.0,<2.0.0
+
+# Development tools
+black>=21.5b2  # Code formatting
+isort>=5.9.0  # Import sorting
+flake8>=3.9.0  # Code linting
+pylint>=2.8.0  # Code analysis
+
+# Documentation
+sphinx>=4.0.0,<5.0.0  # Documentation generation
+sphinx-rtd-theme>=0.5.0,<1.0.0  # Documentation theme
+myst-parser>=0.15.0,<1.0.0  # Markdown support in Sphinx
+
+# Optional dependencies
+tqdm>=4.62.0,<5.0.0  # Progress bars
+h5py>=3.3.0,<4.0.0  # HDF5 file support
+typing-extensions>=3.10.0.0  # For Python 3.7 compatibility
