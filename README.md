@@ -76,6 +76,39 @@ Cube_frame_df.to_csv(Cube_arrangement_save_path, index=False, header=False)
 
 print(f"CubeMap layout saved to : {Cube_arrangement_save_path}")
 
+# For some video conversion with H.265, videos need to have height and width which are multiples of 2. The following creates a padded version of SFLP for video conversion which complies with the requirement.
+
+padding_size = 2
+
+H, W = arranged_pixel_indices_df.shape
+pad_H = (H + padding_size - 1) // padding_size * padding_size   # round up to multiple of padding_size
+pad_W = (W + padding_size - 1) // padding_size * padding_size   # round up to multiple of padding_size
+
+if pad_H != H or pad_W != W:
+    # Create a padded DataFrame
+    padded_df = arranged_pixel_indices_df.copy()
+
+    # Pad columns (extend last column to the right)
+    if pad_W > W:
+        last_col = arranged_pixel_indices_df.iloc[:, -1:]
+        for _ in range(W, pad_W):
+            padded_df[_] = last_col.values
+
+    # Pad rows (extend last row downward)
+    if pad_H > H:
+        last_row = padded_df.iloc[-1:, :].copy()
+        for _ in range(H, pad_H):
+            padded_df = pd.concat([padded_df, last_row], axis=0)
+
+    arranged_pixel_indices_df = padded_df.reset_index(drop=True)
+
+output_path = output_dir / f"SFLP_arrangement_{arrangement_type.name}-360_No_Tiling-{num_points}_padded.csv"
+
+# Save padded CSV
+arranged_pixel_indices_df.to_csv(
+    output_path,
+    index=False, header=False
+)
 ```
 
 Now, convert an example image in ERP to SFLP, CMP, EAC, and EAP:
